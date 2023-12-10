@@ -1,4 +1,4 @@
-package consegna.progettoecommerce.models;
+package consegna.progettoecommerce.models.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationRequest {
-
-    private String email;
-    private String password;
+public class ModifyProductRequest {
+    private ProductRequest newProductRequest;
+    private String oldCode;
 }

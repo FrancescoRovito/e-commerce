@@ -1,5 +1,7 @@
 package consegna.progettoecommerce.entities;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,7 +36,7 @@ import lombok.NoArgsConstructor;
         @Column(name="type")
         private String type;
 
-        @Column(name="model")
+        @Column(name="model", unique=true)
         private String model;
 
         @Column(name="price", nullable=false)

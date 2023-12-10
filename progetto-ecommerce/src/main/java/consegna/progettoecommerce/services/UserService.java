@@ -8,16 +8,16 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import consegna.progettoecommerce.DTO.UserDTO;
-import consegna.progettoecommerce.DTO.UserMapper;
 import consegna.progettoecommerce.config.JwtService;
 import consegna.progettoecommerce.entities.User;
-import consegna.progettoecommerce.models.AuthenticationRequest;
+import consegna.progettoecommerce.models.requests.AuthenticationRequest;
 import consegna.progettoecommerce.models.AuthenticationResponse;
-import consegna.progettoecommerce.models.ModifyUserRequest;
-import consegna.progettoecommerce.models.PageRequestAttributes;
-import consegna.progettoecommerce.models.RegisterRequest;
+import consegna.progettoecommerce.models.DtosMapper;
+import consegna.progettoecommerce.models.requests.ModifyUserRequest;
+import consegna.progettoecommerce.models.requests.PageRequestAttributes;
+import consegna.progettoecommerce.models.requests.RegisterRequest;
 import consegna.progettoecommerce.models.Role;
+import consegna.progettoecommerce.models.dots.UserDTO;
 import consegna.progettoecommerce.repositories.UsersRepository;
 import consegna.progettoecommerce.utility.exceptions.DataNotCorrectException;
 import consegna.progettoecommerce.utility.exceptions.PasswordNotCorrectException;
@@ -96,7 +96,7 @@ public class UserService{
         userRepository.save(user);
 
         String token=jwtService.generateToken(user);
-        UserDTO userDTO = UserMapper.INSTANCE.userToUserDTO(user);  //è il pattern singleton
+        UserDTO userDTO = DtosMapper.INSTANCE.userToUserDTO(user);  //è il pattern singleton
         userDTO.setToken(token);
         //UserDTO userDTO=new UserDTO(user);
         return userDTO;
@@ -111,7 +111,7 @@ public class UserService{
         User user=userRepository.findByEmail(email);
         if(user == null)
             throw new UserNotExistsException();
-        UserDTO userDTO =UserMapper.INSTANCE.userToUserDTO(user);
+        UserDTO userDTO =DtosMapper.INSTANCE.userToUserDTO(user);
         return userDTO;
     }
 

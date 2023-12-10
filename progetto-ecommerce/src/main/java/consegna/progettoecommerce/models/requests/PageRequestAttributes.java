@@ -1,4 +1,4 @@
-package consegna.progettoecommerce.models;
+package consegna.progettoecommerce.models.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

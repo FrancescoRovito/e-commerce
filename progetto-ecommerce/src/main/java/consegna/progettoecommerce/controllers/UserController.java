@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import consegna.progettoecommerce.config.JwtService;
-import consegna.progettoecommerce.models.AuthenticationRequest;
-import consegna.progettoecommerce.models.ModifyUserRequest;
-import consegna.progettoecommerce.models.PageRequestAttributes;
-import consegna.progettoecommerce.models.RegisterRequest;
+import consegna.progettoecommerce.models.requests.AuthenticationRequest;
+import consegna.progettoecommerce.models.requests.ModifyUserRequest;
+import consegna.progettoecommerce.models.requests.PageRequestAttributes;
+import consegna.progettoecommerce.models.requests.RegisterRequest;
 import consegna.progettoecommerce.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -125,7 +125,7 @@ public class UserController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/deleteUser")
-    public ResponseEntity deleteItSelf(@RequestParam String email){
+    public ResponseEntity deleteItSelf(@RequestParam("email") String email){
         try{
             userService.deleteUser(email);
             return new ResponseEntity(HttpStatus.OK);

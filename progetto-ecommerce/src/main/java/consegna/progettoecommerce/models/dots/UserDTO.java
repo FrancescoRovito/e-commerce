@@ -1,4 +1,4 @@
-package consegna.progettoecommerce.DTO;
+package consegna.progettoecommerce.models.dots;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -3,9 +3,9 @@ package consegna.progettoecommerce.utility.support;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import consegna.progettoecommerce.models.ModifyUserRequest;
-import consegna.progettoecommerce.models.ProductRequest;
-import consegna.progettoecommerce.models.RegisterRequest;
+import consegna.progettoecommerce.models.requests.ModifyUserRequest;
+import consegna.progettoecommerce.models.requests.ProductRequest;
+import consegna.progettoecommerce.models.requests.RegisterRequest;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
