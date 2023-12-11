@@ -71,12 +71,12 @@ public class ProductController {
     }
 
     //NON FUNZIONA LA PAGINAZIONE, RIMANE SEMPRE A 0 CON BODY, CON PARAM SI INVECE
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
     @GetMapping("/findAllByNameAdmin")
     public ResponseEntity findAllByNameAdmin(@RequestParam("name") String name,
     @RequestBody PageRequestAttributes pageRequestAttributes){
         try{
-            return ResponseEntity.ok(productService.findAllByNameAdmin(name,pageRequestAttributes));
+            return ResponseEntity.ok(productService.findAllByName(name,pageRequestAttributes));
         }
          catch(RuntimeException e){
             return ResponseEntity.badRequest().body(e.getClass().getSimpleName());
@@ -84,11 +84,12 @@ public class ProductController {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/findAllByTypeAdmin")
+    @PostMapping("/findAllByTypeAdmin or hasAuthority('USER')")
     public ResponseEntity findAllByTypeAdmin(@RequestParam("type") String type,
     @RequestBody PageRequestAttributes pageRequestAttributes){
         try{
-            return ResponseEntity.ok(productService.findAllByTypeAdmin(type,pageRequestAttributes));
+            System.out.println(">>> "+pageRequestAttributes);
+            return ResponseEntity.ok(productService.findAllByType(type,pageRequestAttributes));
         }
          catch(RuntimeException e){
             return ResponseEntity.badRequest().body(e.getClass().getSimpleName());
@@ -100,31 +101,6 @@ public class ProductController {
     public ResponseEntity findByCode(@RequestParam("code") String code){
         try{
             return ResponseEntity.ok(productService.findByCode(code));
-        }
-         catch(RuntimeException e){
-            return ResponseEntity.badRequest().body(e.getClass().getSimpleName());
-        }
-    }
-
-    @PreAuthorize("hasAuthority('USER')")
-    @GetMapping("/findAllByNameUser")
-    public ResponseEntity findAllByNameUser(@RequestParam("name") String name,
-    @RequestBody PageRequestAttributes pageRequestAttributes){
-        try{
-            return ResponseEntity.ok(productService.findAllByNameUser(name,pageRequestAttributes));
-        }
-         catch(RuntimeException e){
-            return ResponseEntity.badRequest().body(e.getClass().getSimpleName());
-        }
-    }
-
-    @PreAuthorize("hasAuthority('USER')")
-    @GetMapping("/findAllByTypeUser")
-    public ResponseEntity findAllByTypeUser(@RequestParam("type") String type,
-    @RequestBody PageRequestAttributes pageRequestAttributes){
-        try{
-            System.out.println(">>> "+pageRequestAttributes.getNPage());
-            return ResponseEntity.ok(productService.findAllByTypeUser(type, pageRequestAttributes));
         }
          catch(RuntimeException e){
             return ResponseEntity.badRequest().body(e.getClass().getSimpleName());

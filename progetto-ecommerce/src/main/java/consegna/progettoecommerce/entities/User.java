@@ -52,19 +52,19 @@ public class User implements UserDetails{
     @Column(name="password", nullable=false)
     private String password;
 
-    /*@OneToMany
+    @OneToMany
     @JoinColumn(name="products_in_cart")
-    private List<ProductInCart> products=new ArrayList<>();*/
+    private List<ProductInCart> productsInCart=new ArrayList<>();
 
-    @Column(name="hasBuyed", nullable=true)
+    @Column(name="has_buyed", nullable=true)
     private boolean hasBuyed;
 
     @Column(name="budget")
     private Double budget;
 
-    /*@OneToMany
+    @OneToMany
     @JoinColumn(name="purchase")
-    private List<Purchase> purchase=new ArrayList<>();*/
+    private List<Purchase> purchase=new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

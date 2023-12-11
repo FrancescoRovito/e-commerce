@@ -103,7 +103,7 @@ public class UserService{
     }
 
     public Page<User> findAll(PageRequestAttributes pageRequestAttributes){
-        PageRequest pageRequest=PageRequest.of(pageRequestAttributes.getNPage(),pageRequestAttributes.getDimPage());
+        PageRequest pageRequest=PageRequest.of(pageRequestAttributes.getPage(),pageRequestAttributes.getDimPage());
         return userRepository.findAll(pageRequest);
     }
 

@@ -14,6 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,6 +22,7 @@ import lombok.NoArgsConstructor;
     @Data
     @NoArgsConstructor  
     @AllArgsConstructor 
+    @Builder
     @Entity
     @Table(name="products_in_cart")    
     public class ProductInCart {
@@ -33,6 +35,14 @@ import lombok.NoArgsConstructor;
     @JsonIgnore
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)     
-    @JoinColumn(name="user", nullable=false)
+    @JoinColumn(name="consumer", nullable=false)
     private User user;
-    }
+
+    @ManyToOne
+    @OnDelete(action=OnDeleteAction.CASCADE)
+    @JoinColumn(name="product", nullable=false)
+    private Product product;
+
+    @Column(name="quantity_to_purchase", nullable = false)
+    private Integer quantityToPurchase;
+}

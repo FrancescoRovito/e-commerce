@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PageRequestAttributes {
-    private int page;
-    private int dimPage;
+public class ProductInCartRequest {
+    
+    private String productCode;
+    private Integer quantityToPurchase;
 }

@@ -31,13 +31,13 @@ public class ProductService {
     
     @Value("${spring.datasource.url}")
     private String url;
-    //Cannot find implementation for progetto.progettoecommerce.DTO.ProductMapper
-    //però aggiungeva lo stesso, nonostante lanciava un'eccezione come mai?
     
     public String infoDb(){
         return url;
     }
     
+    //Cannot find implementation for progetto.progettoecommerce.DTO.ProductMapper
+    //però aggiungeva lo stesso, nonostante lanciava un'eccezione come mai?
     public ProductDTO addProduct (ProductRequest request) throws RuntimeException{
         if(!Support.validProduct(request))
             throw new DataNotCorrectException();
@@ -78,33 +78,25 @@ public class ProductService {
         productRepository.delete(product);
     }
 
-    public Page<Product> findAllByNameAdmin(String name, PageRequestAttributes pageRequestAttributes){
-        PageRequest pageRequest=PageRequest.of(pageRequestAttributes.getNPage(), pageRequestAttributes.getDimPage());
+    public Page<Product> findAllByName(String name, PageRequestAttributes pageRequestAttributes){
+        PageRequest pageRequest=PageRequest.of(pageRequestAttributes.getPage(), pageRequestAttributes.getDimPage());
         return productRepository.findByName(name, pageRequest);
     }
 
-    public Page<Product> findAllByTypeAdmin(String type, PageRequestAttributes pageRequestAttributes){
-        PageRequest pageRequest=PageRequest.of(pageRequestAttributes.getNPage(), pageRequestAttributes.getDimPage());
+    public Page<Product> findAllByType(String type, PageRequestAttributes pageRequestAttributes){
+        PageRequest pageRequest=PageRequest.of(pageRequestAttributes.getPage(), pageRequestAttributes.getDimPage());
         return productRepository.findByType(type, pageRequest);
     }
 
-    public Page<ProductDTO> findAllByNameUser(String name, PageRequestAttributes pageRequestAttributes){
-        PageRequest pageRequest=PageRequest.of(pageRequestAttributes.getNPage(), pageRequestAttributes.getDimPage());
+    /*public Page<ProductDTO> findAllByNameUser(String name, PageRequestAttributes pageRequestAttributes){
+        PageRequest pageRequest=PageRequest.of(pageRequestAttributes.getPage(), pageRequestAttributes.getDimPage());
         Page<Product> pages=productRepository.findByName(name, pageRequest);
         List<ProductDTO> listDto = pages.stream()
         .map(DtosMapper.INSTANCE::productToProductDTO)
         .collect(Collectors.toList());
         return new PageImpl<>(listDto, pageRequest, pages.getTotalElements());
-    }
+    }*/
 
-    public Page<ProductDTO> findAllByTypeUser(String type, PageRequestAttributes pageRequestAttributes){
-        PageRequest pageRequest=PageRequest.of(pageRequestAttributes.getNPage(), pageRequestAttributes.getDimPage());
-        Page<Product> pages=productRepository.findByType(type, pageRequest);
-        List<ProductDTO> listDto = pages.stream()
-        .map(DtosMapper.INSTANCE::productToProductDTO)
-        .collect(Collectors.toList());
-        return new PageImpl<>(listDto, pageRequest, pages.getTotalElements());
-    }
 
     public ProductDTO findByModel (String model) throws RuntimeException{
         Product product=productRepository.findByModel(model);
