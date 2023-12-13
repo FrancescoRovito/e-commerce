@@ -62,6 +62,11 @@ public class User implements UserDetails{
     @Column(name="budget")
     private Double budget;
 
+    /* risolvo non creando la colonna carrello nella tabella purchase
+    @OneToMany
+    @Column(name="acquisto")
+    private List<Purchase> purchase=new ArrayList<>(); */
+
     @OneToMany
     @JoinColumn(name="purchase")
     private List<Purchase> purchase=new ArrayList<>();

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import consegna.progettoecommerce.models.requests.ModifyProductRequest;
+import consegna.progettoecommerce.models.requests.OrderRequest;
 import consegna.progettoecommerce.models.requests.PageRequestAttributes;
 import consegna.progettoecommerce.models.requests.ProductRequest;
 import consegna.progettoecommerce.services.ProductService;
@@ -70,10 +71,9 @@ public class ProductController {
         }
     }
 
-    //NON FUNZIONA LA PAGINAZIONE, RIMANE SEMPRE A 0 CON BODY, CON PARAM SI INVECE
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
-    @GetMapping("/findAllByNameAdmin")
-    public ResponseEntity findAllByNameAdmin(@RequestParam("name") String name,
+    @PostMapping("/findAllByName")
+    public ResponseEntity findAllByName(@RequestParam("name") String name,
     @RequestBody PageRequestAttributes pageRequestAttributes){
         try{
             return ResponseEntity.ok(productService.findAllByName(name,pageRequestAttributes));
@@ -83,12 +83,11 @@ public class ProductController {
         }
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
-    @PostMapping("/findAllByTypeAdmin or hasAuthority('USER')")
-    public ResponseEntity findAllByTypeAdmin(@RequestParam("type") String type,
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
+    @PostMapping("/findAllByType")
+    public ResponseEntity findAllByType(@RequestParam("type") String type,
     @RequestBody PageRequestAttributes pageRequestAttributes){
         try{
-            System.out.println(">>> "+pageRequestAttributes);
             return ResponseEntity.ok(productService.findAllByType(type,pageRequestAttributes));
         }
          catch(RuntimeException e){
@@ -107,7 +106,7 @@ public class ProductController {
         }
     }
 
-    @PreAuthorize("hasAuthority('USER')")
+    @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
     @GetMapping("/findByModel")
     public ResponseEntity findByModel(@RequestParam("model") String model){
         try{
@@ -118,12 +117,13 @@ public class ProductController {
         }
     }
 
+
     @PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
-    @GetMapping("/order")
-    public ResponseEntity orderBy(@RequestParam("name") String name, @RequestParam("typology") String typology,
-    @RequestParam("nPage") int nPage, @RequestParam("dimPage") int dimPage){
+    @PostMapping("/orderBy")
+    public ResponseEntity orderBy(@RequestBody OrderRequest orderRequest){
         try{
-            return ResponseEntity.ok(productService.orderBy(name,typology,nPage,dimPage));
+            System.out.println(orderRequest);
+            return ResponseEntity.ok(productService.orderBy(orderRequest));
         }
          catch(RuntimeException e){
             return ResponseEntity.badRequest().body(e.getClass().getSimpleName());

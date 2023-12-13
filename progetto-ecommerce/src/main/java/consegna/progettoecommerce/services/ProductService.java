@@ -1,20 +1,16 @@
 package consegna.progettoecommerce.services;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import consegna.progettoecommerce.entities.Product;
 import consegna.progettoecommerce.models.DtosMapper;
-import consegna.progettoecommerce.models.ProductTypology;
 import consegna.progettoecommerce.models.dots.ProductDTO;
 import consegna.progettoecommerce.models.requests.ModifyProductRequest;
+import consegna.progettoecommerce.models.requests.OrderRequest;
 import consegna.progettoecommerce.models.requests.PageRequestAttributes;
 import consegna.progettoecommerce.models.requests.ProductRequest;
 import consegna.progettoecommerce.repositories.ProductRepository;
@@ -113,7 +109,7 @@ public class ProductService {
         return product;
     } 
 
-    public Page<Product> orderBy (String name, String typology, int nPage, int dimPage) throws RuntimeException{
+    /*public Page<Product> orderByName (String name, String typology, PageRequestAttributes pageRequestAttributes) throws RuntimeException{
         Sort sort;
         if(typology.equalsIgnoreCase("asc"))
             sort=Sort.by(Sort.Order.asc("price"));
@@ -121,39 +117,49 @@ public class ProductService {
             sort=Sort.by(Sort.Order.desc("price"));
         else
             throw new DataNotCorrectException();
-        PageRequest pageRequest=PageRequest.of(nPage, dimPage, sort);
+        PageRequest pageRequest=PageRequest.of(pageRequestAttributes.getPage(), pageRequestAttributes.getDimPage(), sort);
         return productRepository.findByName(name, pageRequest);
-        
-    }
+    }*/
 
-    /*public Page<Product> orderBy (String sortBy, String typology, int nPage, int dimPage) throws RuntimeException{
+    /*
+    public Page<Product> orderBy (OrderRequest orderRequest) throws RuntimeException{
         Sort sort;
-        if(!isExistsTypology(sortBy))
-            throw new DataNotCorrectException();
-        if(typology.equalsIgnoreCase("asc"))
+        if(orderRequest.getTypology().equalsIgnoreCase("asc"))
             sort=Sort.by(Sort.Order.asc("price"));
-        else if(typology.equalsIgnoreCase("desc"))
+        else if(orderRequest.getTypology().equalsIgnoreCase("desc"))
             sort=Sort.by(Sort.Order.desc("price"));
         else
             throw new DataNotCorrectException();
-        PageRequest pageRequest=PageRequest.of(nPage, dimPage, sort);
-        switch (sortBy) {
-            case "name":
-                return productRepository.findByName(sortBy, pageRequest);
-            case "type":
-                return productRepository.findByType(sortBy, pageRequest);
-            default:
-                throw new DataNotCorrectException();
+        PageRequest pageRequest=PageRequest.of(orderRequest.getPage(), orderRequest.getDimPage(), sort);
+        if(orderRequest.getSortBy()==null)  //se nel json non scrivo SortBy correttamente va in null pointer
+            throw new DataNotCorrectException();
+        else if(orderRequest.getSortBy().equals("name")) {
+            return productRepository.findByName(orderRequest.getName(), pageRequest);
+        }
+        else if(orderRequest.getTypology()==null){   //stessa cosa di sopra
+            System.out.println("entraaa");
+            throw new DataNotCorrectException();
+        }
+        else if(orderRequest.getSortBy().equals("type")) {
+            return productRepository.findByType(orderRequest.getType(), pageRequest);
+        }
+        else{
+            throw new DataNotCorrectException();
         }
     }*/
 
-    private boolean isExistsTypology(String sortBy) {
-        for (ProductTypology t : ProductTypology.values()) {
-            if (t.name().equalsIgnoreCase(sortBy)) {
-                return true;
-            }
-        }
-        return false;
+    public Page<Product> orderBy(OrderRequest orderRequest) throws RuntimeException{
+        Sort sort;
+        if(orderRequest.getSortBy()==null || orderRequest.getTypology()==null)
+            throw new DataNotCorrectException();
+        if(orderRequest.getTypology().equals("asc"))
+            sort=Sort.by(Sort.Order.asc(orderRequest.getSortBy()));
+        else if(orderRequest.getTypology().equals("desc"))
+            sort=Sort.by(Sort.Order.desc(orderRequest.getSortBy()));
+        else
+            throw new DataNotCorrectException();
+        PageRequest pageRequest=PageRequest.of(orderRequest.getPage(), orderRequest.getDimPage(), sort);
+        return productRepository.findAll(pageRequest);
     }
-
 }
+

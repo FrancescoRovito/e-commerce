@@ -2,7 +2,9 @@ package consegna.progettoecommerce.entities;
 
 import jakarta.persistence.Entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -13,6 +15,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -40,12 +43,9 @@ public class Purchase {
     @JoinColumn(name="consumer", nullable=false)
     private User user;
 
-    @ManyToOne
+    @ManyToMany
     @JoinColumn(name="product", nullable = false)
-    private Product product;
-
-    @Column(name="quantity_to_purchase", nullable=false)
-    private Integer quantityToPurchase;
+    private List<Product> products=new ArrayList<>();
 
     @Column(name="total_cost", nullable=false)
     private Double totalCost;
