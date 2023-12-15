@@ -15,14 +15,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import consegna.progettoecommerce.entities.User;
-import consegna.progettoecommerce.repositories.UsersRepository;
+import consegna.progettoecommerce.repositories.UserRepository;
 
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
-    private final UsersRepository usersRepository;
+    private final UserRepository usersRepository;
 
     @Override
     protected void doFilterInternal(

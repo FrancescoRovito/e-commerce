@@ -17,6 +17,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 
     @Data
@@ -34,6 +35,7 @@ import lombok.NoArgsConstructor;
 
     @JsonIgnore
     @ManyToOne
+    @ToString.Exclude
     @OnDelete(action = OnDeleteAction.CASCADE)     
     @JoinColumn(name="consumer", nullable=false)
     private User user;

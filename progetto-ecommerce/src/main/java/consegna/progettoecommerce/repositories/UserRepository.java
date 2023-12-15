@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import consegna.progettoecommerce.entities.User;
 
 @Repository
-public interface UsersRepository extends JpaRepository <User, Integer> {
+public interface UserRepository extends JpaRepository <User, Integer> {
     User findByEmail(String email);
     Page<User> findAll(Pageable pageable);
     //List<User> findAll();

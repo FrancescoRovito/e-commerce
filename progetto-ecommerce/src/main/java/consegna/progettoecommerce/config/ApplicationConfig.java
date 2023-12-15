@@ -11,13 +11,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import lombok.RequiredArgsConstructor;
-import consegna.progettoecommerce.repositories.UsersRepository;
+import consegna.progettoecommerce.repositories.UserRepository;
 
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
-    private final UsersRepository userRepository;
+    private final UserRepository userRepository;
     
     @Bean
     public UserDetailsService userDetailsService(){

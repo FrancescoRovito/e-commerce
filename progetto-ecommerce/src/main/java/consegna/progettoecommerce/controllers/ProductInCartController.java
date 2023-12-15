@@ -43,10 +43,9 @@ public class ProductInCartController {
     // /delete/{productCode}/user/{userid}
     //prendere la mail dal secondo path
     @PreAuthorize("hasAuthority('USER')")
-    @DeleteMapping("/delete/{productCode}")
-    public ResponseEntity deleteProductInCart(HttpServletRequest httpRequest, @PathVariable("productCode") String productCode){
+    @DeleteMapping("/{email}/delete/{productCode}")
+    public ResponseEntity deleteProductInCart(@PathVariable("email") String email, @PathVariable("productCode") String productCode){
         try{
-            String email=jwtService.extractUsernameFromRequest(httpRequest);
             productInCartService.deleteProductInCart(email, productCode);
             return new ResponseEntity(HttpStatus.OK);
         }
@@ -80,6 +79,18 @@ public class ProductInCartController {
     }
 
     @PreAuthorize("hasAuthority('USER')")
+    @PutMapping("/buySingleProduct/{productCode}")
+    public ResponseEntity buySingleProductInCart(HttpServletRequest httpRequest, @PathVariable("productCode") String productCode){
+        try{
+            String email=jwtService.extractUsernameFromRequest(httpRequest);
+            return ResponseEntity.ok(productInCartService.buySingleProductInCart(email, productCode));
+        }
+        catch(RuntimeException e){
+            return ResponseEntity.badRequest().body(e.getClass().getSimpleName());
+        }
+    }
+
+    @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/getTotalCost")
     public ResponseEntity getTotalCost(HttpServletRequest httpRequest){
         try{
@@ -89,5 +100,18 @@ public class ProductInCartController {
         catch(RuntimeException e){
             return ResponseEntity.badRequest().body(e.getClass().getSimpleName());
         }
-    }    
+    }
+    
+    @PreAuthorize("hasAuthority('USER')")
+    @PutMapping("/modify")
+    public ResponseEntity modifyProductInCart(HttpServletRequest httpRequest, @RequestBody ProductInCartRequest productInCartRequest){
+        try{
+            String email=jwtService.extractUsernameFromRequest(httpRequest);
+            productInCartService.modifyQuantityProductInCart(email, productInCartRequest);
+            return new ResponseEntity(HttpStatus.OK);
+        }
+        catch(RuntimeException e){
+            return ResponseEntity.badRequest().body(e.getClass().getSimpleName());
+        }
+    }
 }

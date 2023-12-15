@@ -56,9 +56,6 @@ public class User implements UserDetails{
     @JoinColumn(name="products_in_cart")
     private List<ProductInCart> productsInCart=new ArrayList<>();
 
-    @Column(name="has_buyed", nullable=true)
-    private boolean hasBuyed;
-
     @Column(name="budget")
     private Double budget;
 

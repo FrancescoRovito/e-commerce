@@ -1,5 +1,4 @@
 package consegna.progettoecommerce.services;
-import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,7 +17,7 @@ import consegna.progettoecommerce.models.requests.PageRequestAttributes;
 import consegna.progettoecommerce.models.requests.RegisterRequest;
 import consegna.progettoecommerce.models.Role;
 import consegna.progettoecommerce.models.dots.UserDTO;
-import consegna.progettoecommerce.repositories.UsersRepository;
+import consegna.progettoecommerce.repositories.UserRepository;
 import consegna.progettoecommerce.utility.exceptions.DataNotCorrectException;
 import consegna.progettoecommerce.utility.exceptions.PasswordNotCorrectException;
 import consegna.progettoecommerce.utility.exceptions.UserNotExistsException;
@@ -29,7 +28,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserService{
     
-    private final UsersRepository userRepository;
+    private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
@@ -62,7 +61,6 @@ public class UserService{
                     .lastName(request.getLastName())
                     .email(request.getEmail())
                     .password(passwordEncoder.encode(request.getPassword()))
-                    .budget(request.getBudget())
                     .role(Role.ADMIN)
                     .build();   
         userRepository.save(user); 

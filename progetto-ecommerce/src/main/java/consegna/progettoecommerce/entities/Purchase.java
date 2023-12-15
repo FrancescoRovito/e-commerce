@@ -24,6 +24,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
@@ -40,6 +41,7 @@ public class Purchase {
 
     @JsonIgnore
     @ManyToOne
+    @ToString.Exclude
     @JoinColumn(name="consumer", nullable=false)
     private User user;
 
@@ -52,6 +54,6 @@ public class Purchase {
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="purchase_data", nullable=false)
-    private Date data;
+    @Column(name="purchase_date", nullable=false)
+    private Date date;
 }
