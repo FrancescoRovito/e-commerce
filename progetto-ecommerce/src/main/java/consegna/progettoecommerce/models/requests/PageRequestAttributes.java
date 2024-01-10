@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PageRequestAttributes {
+    
     private int page;
     private int dimPage;
 }

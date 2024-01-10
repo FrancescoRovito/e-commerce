@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ModifyProductRequest {
+    
     private ProductRequest newProductRequest;
     private String oldCode;
 }

@@ -40,8 +40,6 @@ public class ProductInCartController {
         }
     }
 
-    // /delete/{productCode}/user/{userid}
-    //prendere la mail dal secondo path
     @PreAuthorize("hasAuthority('USER')")
     @DeleteMapping("/{email}/delete/{productCode}")
     public ResponseEntity deleteProductInCart(@PathVariable("email") String email, @PathVariable("productCode") String productCode){

@@ -1,8 +1,5 @@
 package consegna.progettoecommerce.utility.support;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import consegna.progettoecommerce.models.requests.ModifyUserRequest;
 import consegna.progettoecommerce.models.requests.ProductRequest;
 import consegna.progettoecommerce.models.requests.RegisterRequest;
@@ -28,12 +25,6 @@ public class Support {
     public static boolean validPassword(String password){
         String regexPassword="^(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{5,}$";
         return password.matches(regexPassword);
-    }
-
-    public static String currentDate(){
-        LocalDateTime data=LocalDateTime.now();
-        DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        return data.format(formatter);
     }
 
     public static boolean validProduct (ProductRequest request){

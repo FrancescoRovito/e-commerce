@@ -11,6 +11,7 @@ import consegna.progettoecommerce.entities.User;
 
 @Repository
 public interface ProductInCartRepository extends JpaRepository<ProductInCart, Integer> {
+    
     ProductInCart findByUserAndProduct(User user, Product product);
     void deleteAllByUser(User user);
     Page<ProductInCart> findByUser(User user, PageRequest pageRequest);

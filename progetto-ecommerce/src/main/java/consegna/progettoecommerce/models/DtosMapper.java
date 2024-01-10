@@ -10,6 +10,7 @@ import consegna.progettoecommerce.models.dots.UserDTO;
 
 @Mapper
 public interface DtosMapper {
+    
     DtosMapper INSTANCE = Mappers.getMapper(DtosMapper.class);
     UserDTO userToUserDTO(User user);
     ProductDTO productToProductDTO(Product product);

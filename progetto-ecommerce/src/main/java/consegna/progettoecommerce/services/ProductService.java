@@ -32,8 +32,6 @@ public class ProductService {
         return url;
     }
     
-    //Cannot find implementation for progetto.progettoecommerce.DTO.ProductMapper
-    //però aggiungeva lo stesso, nonostante lanciava un'eccezione come mai?
     public ProductDTO addProduct (ProductRequest request) throws RuntimeException{
         if(!Support.validProduct(request))
             throw new DataNotCorrectException();

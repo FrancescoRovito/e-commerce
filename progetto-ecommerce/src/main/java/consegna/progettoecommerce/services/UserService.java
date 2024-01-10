@@ -94,9 +94,8 @@ public class UserService{
         userRepository.save(user);
 
         String token=jwtService.generateToken(user);
-        UserDTO userDTO = DtosMapper.INSTANCE.userToUserDTO(user);  //è il pattern singleton
+        UserDTO userDTO = DtosMapper.INSTANCE.userToUserDTO(user); 
         userDTO.setToken(token);
-        //UserDTO userDTO=new UserDTO(user);
         return userDTO;
     }
 
@@ -119,8 +118,4 @@ public class UserService{
             throw new UserNotExistsException();
         userRepository.delete(user);
     }
-
-    /*public List<User> findAll(){
-        return userRepository.findAll();
-    }*/
 }

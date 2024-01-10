@@ -10,8 +10,8 @@ import consegna.progettoecommerce.entities.User;
 
 @Repository
 public interface UserRepository extends JpaRepository <User, Integer> {
+    
     User findByEmail(String email);
     User findById(int id);
     Page<User> findAll(Pageable pageable);
-    //List<User> findAll();
 }

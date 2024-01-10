@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PurchaseRequest {
+    
     private int year;
     private int page;
     private int dimPage;

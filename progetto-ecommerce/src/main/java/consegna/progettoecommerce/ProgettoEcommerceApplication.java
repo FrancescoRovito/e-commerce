@@ -1,17 +1,13 @@
 package consegna.progettoecommerce;
 
-import java.util.List;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import consegna.progettoecommerce.models.dots.PurchaseQueryDTO;
 import consegna.progettoecommerce.models.requests.ProductInCartRequest;
 import consegna.progettoecommerce.models.requests.ProductRequest;
 import consegna.progettoecommerce.models.requests.RegisterRequest;
-import consegna.progettoecommerce.repositories.PurchaseRepository;
 import consegna.progettoecommerce.services.ProductInCartService;
 import consegna.progettoecommerce.services.ProductService;
 import consegna.progettoecommerce.services.PurchaseService;
