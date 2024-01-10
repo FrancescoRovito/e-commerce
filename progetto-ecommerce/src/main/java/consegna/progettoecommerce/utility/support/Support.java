@@ -30,7 +30,7 @@ public class Support {
         return password.matches(regexPassword);
     }
 
-    public static String dataCorrente(){
+    public static String currentDate(){
         LocalDateTime data=LocalDateTime.now();
         DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return data.format(formatter);

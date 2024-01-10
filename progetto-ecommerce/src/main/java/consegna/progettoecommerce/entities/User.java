@@ -9,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import consegna.progettoecommerce.models.Role;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -19,6 +20,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -58,11 +60,6 @@ public class User implements UserDetails{
 
     @Column(name="budget")
     private Double budget;
-
-    /* risolvo non creando la colonna carrello nella tabella purchase
-    @OneToMany
-    @Column(name="acquisto")
-    private List<Purchase> purchase=new ArrayList<>(); */
 
     @OneToMany
     @JoinColumn(name="purchase")

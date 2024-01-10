@@ -2,8 +2,6 @@ package consegna.progettoecommerce.controllers;
 
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,20 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import consegna.progettoecommerce.config.JwtService;
-import consegna.progettoecommerce.models.dots.PurchaseQueryDTO;
 import consegna.progettoecommerce.models.requests.AuthenticationRequest;
 import consegna.progettoecommerce.models.requests.ModifyUserRequest;
 import consegna.progettoecommerce.models.requests.PageRequestAttributes;
 import consegna.progettoecommerce.models.requests.RegisterRequest;
-import consegna.progettoecommerce.repositories.PurchaseRepository;
 import consegna.progettoecommerce.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-
 
 @RequiredArgsConstructor
 @RestController
@@ -36,13 +30,6 @@ public class UserController {
 
     private final UserService userService;
     private final JwtService jwtService;
-    private final PurchaseRepository purchaseRepository;
-    
-    @PreAuthorize("hasAuthority('USER')")
-    @GetMapping("/test")
-    public List<PurchaseQueryDTO> test(){
-        return purchaseRepository.getByTest();
-    }
     
     @PostMapping("/registerUser")
     public ResponseEntity registerUser(@RequestBody RegisterRequest request){ 
@@ -99,7 +86,7 @@ public class UserController {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/findAll")
+    @PostMapping("/findAll")
     public ResponseEntity findAll(@RequestBody PageRequestAttributes pageRequestAttributes){
         try{
             return ResponseEntity.ok(userService.findAll(pageRequestAttributes));

@@ -14,5 +14,4 @@ public class ProductDTO {
     private String type;
     private String model;
     private Double price;
-
 }

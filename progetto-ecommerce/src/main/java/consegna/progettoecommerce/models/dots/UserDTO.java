@@ -17,11 +17,4 @@ public class UserDTO {
     private boolean hasModified;
     private double budget;
     private String token;
-
-    /*public UserDTO(User user) {
-        this.firstName=user.getFirstName();
-        this.lastName=user.getLastName();
-        this.email=user.getEmail();
-        hasModified=true;
-    }*/
 }
