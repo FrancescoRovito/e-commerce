@@ -9,7 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import consegna.progettoecommerce.models.Role;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -61,8 +61,7 @@ public class User implements UserDetails{
     @Column(name="budget")
     private Double budget;
 
-    @OneToMany
-    @JoinColumn(name="purchase")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Purchase> purchase=new ArrayList<>();
 
     @Override
