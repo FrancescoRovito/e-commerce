@@ -96,17 +96,6 @@ public class UserController {
         }
     }
 
-    /*@PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/findAll")
-    public ResponseEntity findAll(){
-        try{
-            return ResponseEntity.ok(userService.findAll());
-        }
-        catch(RuntimeException e){
-            return ResponseEntity.badRequest().body(e.getClass().getSimpleName());
-        }
-    }*/
-
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
     @DeleteMapping("/deleteItSelf")
     public ResponseEntity deleteItSelf(HttpServletRequest httpRequest){
@@ -122,7 +111,7 @@ public class UserController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/deleteUser")
-    public ResponseEntity deleteItSelf(@RequestParam("email") String email){
+    public ResponseEntity deleteUser(@RequestParam("email") String email){
         try{
             userService.deleteUser(email);
             return new ResponseEntity(HttpStatus.OK);

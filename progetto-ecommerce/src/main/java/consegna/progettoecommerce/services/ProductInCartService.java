@@ -64,7 +64,7 @@ public class ProductInCartService {
                 throw new ProductNotAvailableException();
             }  
         }
-        //se il prod è già nel carrello controlla la qta
+        //se il prod è già nel carrello controllo la qta
         else if(prod.getQuantity()>=prodCart.getQuantityToPurchase()+productInCartRequest.getQuantityToPurchase()){
                 prodCart.setQuantityToPurchase(prodCart.getQuantityToPurchase()+productInCartRequest.getQuantityToPurchase());
         }
@@ -90,7 +90,6 @@ public class ProductInCartService {
         userRepository.save(user);
     }
 
-    
     public Page<ProductInCart> getProductsInCart (String email, PageRequestAttributes pageRequestAttributes) throws RuntimeException{
         User user=userRepository.findByEmail(email);
         if(user==null)
@@ -99,13 +98,11 @@ public class ProductInCartService {
         return productInCartRepository.findByUser(user, pageRequest);
     } 
 
-    //provare se non ho soldi
     @Transactional
     public UserDTO buyAllProductsInCart(String email) throws RuntimeException{
         User user=userRepository.findByEmail(email);
         if(user==null)
             throw new UserNotExistsException();
-        //se ho disponibilità economica
 
         if(user.getBudget()<getTotalCost(email))
               throw new BudgetNotAvailableException();
@@ -115,21 +112,21 @@ public class ProductInCartService {
         Product product=null;
         for(ProductInCart prodCart:user.getProductsInCart()){
             // se qta non è disponibile in magazzino
-            //Product productInStore=productRepository.findByCode(prodCart.getProduct().getCode());
             product=prodCart.getProduct();
+
             if(prodCart.getQuantityToPurchase()>product.getQuantity())
                 throw new ProductNotAvailableException();
+            
             productsToPurchase.add(product);
-                
             //aggiorno il magazzino dopo l'acquisto per ogni productInCart
             product.setQuantity(product.getQuantity()-prodCart.getQuantityToPurchase());
             productRepository.save(product);
         }
         Purchase purchase=Purchase.builder()
         .products(productsToPurchase).user(user).totalCost(getTotalCost(email)).build();
-                
-        purchaseRepository.save(purchase);
+         purchaseRepository.save(purchase);
         user.getPurchase().add(purchase); //lo aggiungo all'utente
+
         //svuoto il carrello nel db
         productInCartRepository.deleteAllByUser(user);
         //aggiorno il budget
@@ -171,6 +168,7 @@ public class ProductInCartService {
 
         //modifico il budget
         user.setBudget(user.getBudget()-cost);
+
         //elimino il product dal carrello
         user.getProductsInCart().remove(prodCart);
         userRepository.save(user);
@@ -205,7 +203,7 @@ public class ProductInCartService {
             throw new ProductInCartNotExistsException();
         if(prod.getQuantity()<productInCartRequest.getQuantityToPurchase())
             throw new ProductNotAvailableException();
-        //di fatto elimino il prodotto dal carrello
+        //se=0 di fatto elimino il prodotto dal carrello
         if(productInCartRequest.getQuantityToPurchase()==0){
             productInCartRepository.delete(prodCart);
             user.getProductsInCart().remove(prodCart);

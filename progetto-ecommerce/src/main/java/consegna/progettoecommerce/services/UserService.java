@@ -99,7 +99,7 @@ public class UserService{
         return userDTO;
     }
 
-    public Page<User> findAll(PageRequestAttributes pageRequestAttributes){
+    public Page<User> findAll(PageRequestAttributes pageRequestAttributes) throws RuntimeException{
         PageRequest pageRequest=PageRequest.of(pageRequestAttributes.getPage(),pageRequestAttributes.getDimPage());
         return userRepository.findAll(pageRequest);
     }

@@ -15,5 +15,5 @@ public class ModifyUserRequest {
     private String lastName;
     private String email;
     private String password;
-    private double budget;
+    private Double budget;
 }

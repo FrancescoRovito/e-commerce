@@ -23,7 +23,7 @@ public class PurchaseController {
     private final PurchaseService purchaseService;
     private final JwtService jwtService;
 
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
+    @PreAuthorize("hasAuthority('USER')")
     @PostMapping("/findByIdAndYear")
     public ResponseEntity findByIdAndYear(HttpServletRequest httpRequest, @RequestParam("year") int year,
     @RequestBody PageRequestAttributes pageRequestAttributes){
