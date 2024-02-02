@@ -3,6 +3,8 @@ package consegna.progettoecommerce.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -57,6 +59,8 @@ import lombok.NoArgsConstructor;
         @Column (name="version")
         private Long version;
 
+        //senza il getAll salta. Errore di serializzazione
+        @JsonIgnore
         @ManyToMany(mappedBy = "products", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
         private List<Purchase> purchases = new ArrayList<>();
     }

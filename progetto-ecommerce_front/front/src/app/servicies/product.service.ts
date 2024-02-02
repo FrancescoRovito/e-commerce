@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { API } from '../constants';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { Product } from '../dataTypes';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class ProductService {
 
   constructor(private apiService:ApiService, private router:Router) { }
 
-  addProduct(data:object):void{
+  /*addProduct(data:object):void{
     let result=this.apiService.makeRequest("post",API.product+API.addProduct,data)
     result.subscribe((response)=>{
       //poi la tolgo il local storage non è necessario salvare
@@ -22,5 +23,14 @@ export class ProductService {
     })
     console.log(result) //stampa l'observable
     console.warn("PRODOTTO INSERITO CON SUCCESSO!")
+  } */
+
+  //Alternativa all'add di sopra
+  addProduct(product:Product):Observable<Product>{
+    return this.apiService.makeRequest("post",API.product+API.addProduct,product)
+  }
+
+  getAllProduct():Observable<Product[]>{
+    return this.apiService.makeRequest("get",API.product+API.getAllProduct)
   }
 }

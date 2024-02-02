@@ -1,5 +1,8 @@
 package consegna.progettoecommerce.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -110,6 +113,10 @@ public class ProductService {
             throw new DataNotCorrectException();
         PageRequest pageRequest=PageRequest.of(orderRequest.getPage(), orderRequest.getDimPage(), sort);
         return productRepository.findAll(pageRequest);
+    }
+
+    public List<Product> getAll() {
+        return productRepository.findAll();
     }
 }
 

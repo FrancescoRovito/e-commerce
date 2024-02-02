@@ -1,3 +1,13 @@
+.add-product{
+border: solid 2px darkcyan;
+display: flex;
+text-align: center;
+flex-direction: column;
+float: left;
+border-radius: 7px;
+box-shadow: 2px 2px 4px rgba(0, 0, 0), 0.3;
+}
+
 .errors{
     text-align: center;
     color: red;

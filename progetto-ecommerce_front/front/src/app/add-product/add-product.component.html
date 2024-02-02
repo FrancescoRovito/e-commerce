@@ -10,7 +10,7 @@
         di sottomissione del form. Quando il form viene sottoposto, la funzione addProduct(productForm.value) 
         presente nel file ts verrà chiamata per elaborare i dati del form.
     -->
-    <form [formGroup]="productForm" (ngSubmit)="addProduct(productForm.value)" class="common-form">
+    <form [formGroup]="productForm" (ngSubmit)="addProduct()" class="common-form">
 
         <div class="text">
             <label class="label" for="name">Nome:</label>

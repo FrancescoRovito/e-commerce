@@ -46,6 +46,7 @@ public class Purchase {
     @JoinColumn(name="consumer", nullable=false)
     private User user;
 
+    @JsonIgnore
     @ManyToMany
     @JoinColumn(name="product", nullable = false)
     private List<Product> products=new ArrayList<>();

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from '../servicies/product.service';
 import { Router } from '@angular/router';
+import { Product } from '../dataTypes';
 
 @Component({
   selector: 'app-add-product',
@@ -49,6 +50,7 @@ export class AddProductComponent implements OnInit{
       
   }
 
+  /*
   addProduct(data:object):void{
     console.log(this.productForm)
     console.warn(data)
@@ -56,5 +58,16 @@ export class AddProductComponent implements OnInit{
     this.productForm.reset(); //SE C'E' UN'ECCEZIONE E NON VENGONO INSERITI I DATI VIENE FATTA UGUALMENTE LA RESET E NON VOGLIO
     // this.router.navigate(['']); // va alla home dopo aver aggiunto 
     alert("Prodotto inserito con successo")
+  } */
+
+  //Alternativa all'add di sopra
+  addProduct():void{
+    //associa gli attributi del form al Product in dataTypes e devono avere gli stessi nomi
+    const product: Product=this.productForm.value;
+    this.productService.addProduct(product).subscribe((res) =>{
+      console.log(res)
+      alert("Prodotto inserito con successo")
+      this.productForm.reset();
+    })
   }
 }

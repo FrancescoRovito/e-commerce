@@ -7,5 +7,6 @@ export const API={
     registerAdmin:'/registerAdmin',
     login:'/login',
     product:'/prod',
-    addProduct:'/add'
+    addProduct:'/add',
+    getAllProduct:'/getAll'
 }

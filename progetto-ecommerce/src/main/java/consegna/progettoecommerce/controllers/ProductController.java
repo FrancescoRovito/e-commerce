@@ -130,4 +130,15 @@ public class ProductController {
             return ResponseEntity.badRequest().body(e.getClass().getSimpleName());
         }
     }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/getAll")
+    public ResponseEntity getAll(){
+        try{
+            return ResponseEntity.ok(productService.getAll());
+        }
+         catch(RuntimeException e){
+            return ResponseEntity.badRequest().body(e.getClass().getSimpleName());
+        }
+    }
 }
