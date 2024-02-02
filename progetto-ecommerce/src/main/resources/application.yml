@@ -1,0 +1,10 @@
+#file per collegare con docker
+#spring:
+ # datasource:
+  #  url: "jdbc:postgresql://localhost:5432/test"
+   # username: postgres
+    #password: ""
+    #driver-class-name: org.postgresql.Driver
+  #jpa:
+   # hibernate:
+    # ddl-auto: update

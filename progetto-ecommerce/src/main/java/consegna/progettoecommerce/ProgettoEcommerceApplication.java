@@ -54,10 +54,10 @@ public class ProgettoEcommerceApplication {
 			System.out.println(productInCartService.buyAllProductsInCart("gino@ciao.it"));
 			System.out.println();
 
-			//productInCartService.buyAllProductsInCart("giovanni@ciao.it"); 
-			//System.out.println();
+			System.out.println(productInCartService.buyAllProductsInCart("giovanni@ciao.it")); 
+			System.out.println();
 	
-			System.out.println(purchaseService.findByConsumer(2));
+			System.out.println(purchaseService.findByConsumer(1));
 			};
 		}
 	}

@@ -1,0 +1,77 @@
+/* regola di stile si applica a tutti gli elementi con la classe "nav" */
+.nav{
+    /* Imposta l'altezza dell'elemento con classe "nav" a 2em, ovvero la dimensione di un elemento è 
+    pari al doppio della dimensione del carattere del testo di default. */
+    height: 2em;
+    /* Aggiunge uno spazio interno di 1em all'elemento con classe "nav", che è il carattere di default.*/
+    padding: 1em;
+    /* Imposta il modello di layout del contenitore come flessibile, trasformando i figli diretti 
+    in elementi flessibili. In questo caso, i figli della classe .nav saranno posizionati in una 
+    riga orizzontale. */
+    display: flex;
+    /* Allinea gli elementi lungo l'asse principale (orizzontale in questo caso) distribuendoli 
+    uniformemente con spaziatura tra di essi */
+    justify-content: space-around;
+    /* Allinea gli elementi lungo l'asse trasversale (verticale in questo caso) al centro del contenitore */
+    align-items: center;
+    /* I numeri all'interno della funzione rgba rappresentano i valori dei canali 
+    rosso, verde, blu e alfa (trasparenza) del colore.*/
+    background-color: rgba(128, 128, 128, 0.264);
+    /* Aggiunge un bordo arrotondato al contenitore con un raggio di 8 pixel */
+    border-radius: 8px;
+}
+
+.title{
+    font-size: 35px;
+    color: darkcyan;
+}
+/*  Si applica agli elementi <ul> all'interno di un elemento con la classe  nav */
+.nav ul{
+    /* Fa espandere l'elemento <ul> per occupare tutto lo spazio disponibile.*/
+    flex: 1;
+    /* Rimuove i punti elenco predefiniti dagli elementi della lista. */
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    /*  Imposta la larghezza degli elementi della lista a 15em. */
+    width: 15em;
+}
+
+/*  Si applica agli elementi <a> all'interno di un elemento con la classe  nav */
+.nav a{
+    /*  Rimuove la sottolineatura dai link. */
+    text-decoration: none;
+    color: darkcyan;
+}
+
+/*  Si applica agli elementi <li> all'interno di un elemento con la classe  nav */
+.nav li{
+    /* Aggiunge uno spazio marginale di 1em a tutti gli elementi <li> */
+    margin: 1em;
+}
+
+/* regola di stile si applica a tutti gli elementi con la classe "nav_search" che è in div */
+.nav_search{
+    flex: 1;
+    /* Aggiunge uno spazio marginale del 5% a sinistra e a destra dell'elemento con classe "nav_search". */
+    margin-left: 5%;
+    margin-right: 5%;
+    display: flex;
+}
+
+/* Si applica agli elementi <input> all'interno di un elemento con la classe "nav_search". */
+.nav_search input{
+    flex: 1;
+    color: darkcyan;
+    /* Aggiunge un bordo di 1px solid, ovvero una linea continua e uniforme, di colore darkcyan */
+    border: 1px solid darkcyan;
+    /* Rimuove il bordo destro del pulsante */
+    border-right: 0;
+}
+
+/* Si applica agli elementi <button> all'interno di un elemento con la classe "nav_search". */
+.nav_search button{
+    color: darkcyan;
+    border: 1px solid darkcyan;
+    border-left: 0;
+}

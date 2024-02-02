@@ -1,0 +1,88 @@
+<!-- REACTIVE FORM -->
+<div class="add-product">
+    <h1 class="text"> Aggiungi prodotto </h1>
+    <!-- 
+        [formGroup]="productForm": Utilizza la direttiva [formGroup] per collegare il form a un oggetto 
+        FormGroup di Angular apparteneneti ai ReactiveForm chiamato productForm. 
+        FormGroup rappresenta un gruppo di controlli del form e gestisce la validità e lo stato del form.
+
+        (ngSubmit)="addProduct(productForm.value)": Utilizza la direttiva (ngSubmit) per gestire l'evento 
+        di sottomissione del form. Quando il form viene sottoposto, la funzione addProduct(productForm.value) 
+        presente nel file ts verrà chiamata per elaborare i dati del form.
+    -->
+    <form [formGroup]="productForm" (ngSubmit)="addProduct(productForm.value)" class="common-form">
+
+        <div class="text">
+            <label class="label" for="name">Nome:</label>
+            <!-- name è la proprietà del back end.
+                
+                formControlName="name": Associa l'input al controllo del form Angular chiamato 
+                "name" all'interno del FormGroup productForm.
+            -->
+            <input class="form-input" type="text" formControlName="name" placeholder="Inserisci il nome">
+            <div *ngIf="productForm.get('name')!.invalid">
+                <!-- "! indica l'operatore di non null e non NOT"
+                
+                se disabilito il tasto si può eliminare questa scritta
+                <div class="errors" *ngIf="productForm.get('name')!.errors?.['required']"> </div> -->
+                <div class="errors" *ngIf="productForm.get('name')!.errors?.['pattern']"> Dati non corretti </div>
+            </div>
+        </div>
+
+        <div class="text">
+            <label class="label" for="type">Tipo:</label>
+            <input class="form-input" type="text" formControlName="type" placeholder="Inserisci il tipo">
+            <div *ngIf="productForm.get('type')!.invalid">
+                <!-- <div class="errors" *ngIf="productForm.get('type')!.errors?.['required']"> </div> -->
+                <div class="errors" *ngIf="productForm.get('type')!.errors?.['pattern']"> Dati non corretti </div>
+            </div>
+        </div>
+
+        <div class="text">
+            <label class="label" for="model">Modello:</label>
+            <input class="form-input" type="text" formControlName="model" placeholder="Inserisci il modello">
+            <div *ngIf="productForm.get('model')!.invalid">
+                <!-- <div class="errors" *ngIf="productForm.get('type')!.errors?.['required']"> </div> -->
+                <div class="errors" *ngIf="productForm.get('model')!.errors?.['pattern']"> Dati non corretti </div>
+            </div>
+        </div>
+
+        <div class="text">
+            <label class="label" for="code">Codice:</label>
+            <input class="form-input" type="text" formControlName="code" placeholder="Inserisci il codice">
+            <div *ngIf="productForm.get('code')!.invalid">
+                <!-- <div class="errors" *ngIf="productForm.get('type')!.errors?.['required']"> </div> -->
+                <div class="errors" *ngIf="productForm.get('code')!.errors?.['pattern']"> Dati non corretti </div>
+            </div>
+        </div>
+
+        <div class="text">
+            <label class="label" for="price">Prezzo:</label>
+            <input class="form-input" type="number" formControlName="price" placeholder="Inserisci il prezzo" [min]="0">
+            <div *ngIf="productForm.get('price')!.invalid">
+                <!-- <div class="errors" *ngIf="productForm.get('type')!.errors?.['required']"> </div> -->
+                <div class="errors" *ngIf="productForm.get('price')!.errors?.['pattern']"> Dati non corretti </div>
+            </div>
+        </div>
+
+        <div class="text">
+            <label class="label" for="quantity">Quantità:</label>
+            <input class="form-input" type="number" formControlName="quantity" placeholder="Inserisci la quantità" [min]="0">
+            <div *ngIf="productForm.get('quantity')!.invalid">
+                <!-- <div class="errors" *ngIf="productForm.get('type')!.errors?.['required']"> </div> -->
+                <div class="errors" *ngIf="productForm.get('quantity')!.errors?.['pattern']"> Dati non corretti </div>
+            </div>
+        </div>
+
+        <!--
+            [disabled]="!productForm.valid": Questo è un esempio di un binding di attributo in Angular. 
+            La direttiva [disabled] è utilizzata per controllare se l'attributo disabled del pulsante 
+            deve essere impostato su true o false in base a una condizione. In questo caso, la condizione 
+            è !productForm.valid.
+            productForm.valid: Questa espressione restituisce true se il form (productForm) è considerato 
+            valido e false se è invalido. La validità di un form dipende dai vincoli di validazione 
+            definiti per i suoi campi.
+        -->
+        <button class="form-button" [disabled]="!productForm.valid"> Aggiungi prodotto </button>
+    </form>
+</div>

@@ -1,0 +1,46 @@
+<!-- TEMPLATE DRIVEN FORM -->
+<div class="seller-auth">
+    <div class="sign-up">
+        <h1 class="sign-up"> Sign up </h1>
+        <!--
+            <form> è un elemento HTML che rappresenta un modulo HTML.
+
+            #sellerSignUp="ngForm": assegna un riferimento al form utilizzando il nome sellerSignUp 
+            e lo registra come un form Angular (ngForm). E' un evento, gestisce i form in modo più avanzato 
+            all'interno di applicazioni Angular. E' parte del modulo FormsModule di Angular, 
+            che deve essere importato nel modulo principale.
+
+            (ngSubmit)="signup(sellerSignUp.value)": Questo attributo ascolta l'evento di submit 
+            del form (ngSubmit) e chiama la funzione signup() quando il form viene sottoposto.
+            .value rappresenta l'oggetto che contiene i valori correnti dei campi del form. 
+            Questo oggetto è generato automaticamente da Angular quando il form viene sottoposto,
+            ed è un oggetto chiave valore, un JSON.
+        -->
+        <form #sellerSignUp="ngForm" (ngSubmit)="signup(sellerSignUp.value)" class="common-form">
+            <!--
+                ngModel: è una direttiva di Angular che abilita il two-way data binding. 
+                Collega il valore dell'input a una proprietà del modello Angular.
+                name="name" assegna un nome all'input.
+                NOTA BENE I NOMI IN "" AD OGNI NAME DEVONO CORRISPONDERE AI NOMI PRECISI
+                LATO BACKEND CHE SI INVIANO NEI METODI DEL CONTROLLER
+            -->
+            <label for="firstName">Insert your First Name:</label>
+            <input class="form-input" type="text" ngModel name="firstName" placeholder="Enter name" required firstName>
+
+            <label for="lastName">Insert your Last Name:</label>
+            <input class="form-input" type="text" ngModel name="lastName" placeholder="Enter last name" required lastName>
+
+            <!-- c'era text in type-->
+            <label for="email">Insert your E-mail:</label>
+            <input class="form-input" type="email" ngModel name="email" placeholder="Enter email" required email>
+            
+            <label for="password">Insert your Password:</label>
+            <input class="form-input" type="password" ngModel name="password" placeholder="Almeno 5 caratteri" required password>
+
+            <label for="password">Insert your budget:</label>
+            <!-- non c'era [min]="0", permette di non scendere sotto lo zero -->
+            <input class="form-input" type="number" ngModel name="budget" placeholder="Enter budget" [min]="0" [disabled]="isSellerAuthPage()">
+            <button class="form-button" [disabled]="!sellerSignUp.valid"> Sign up!</button>
+        </form>
+    </div>
+</div>

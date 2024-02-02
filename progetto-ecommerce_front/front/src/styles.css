@@ -1,0 +1,34 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+    font-family: sans-serif;
+}
+
+.common-form{
+    text-align: center;
+    display: flex;
+    /* Imposta la direzione principale di flessione su "column", il che significa 
+    che gli elementi figli saranno disposti verticalmente.*/
+    flex-direction: column;
+    width: 300px;
+    /* Imposta il margine automaticamente su tutti i lati, il che è spesso 
+    usato per centrare un blocco all'interno del suo contenitore.*/
+    margin: auto;
+}
+
+.form-input{
+    height: 35px;
+    /* Imposta il margine inferiore a 20 pixel, creando uno spazio tra gli elementi form-input.*/
+    margin-bottom: 20px;
+    border: 1px solid darkcyan;
+    color: darkcyan;
+}
+
+.form-button{
+    height: 35px;
+    border: 1px solid darkcyan;
+    /* Cambia il cursore quando si passa sopra il pulsante per indicare che è cliccabile.*/
+    cursor: pointer;
+    background-color: darkcyan;
+    /* Imposta lo spessore del carattere a 700, che corrisponde a "bold" (grassetto).*/
+    font-weight: 700;
+}

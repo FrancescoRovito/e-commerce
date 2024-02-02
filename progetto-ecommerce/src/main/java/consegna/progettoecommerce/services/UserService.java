@@ -48,7 +48,7 @@ public class UserService{
                     .build();   
         userRepository.save(user); 
         String jwtToken=jwtService.generateToken(user);
-        return new AuthenticationResponse(jwtToken);
+        return new AuthenticationResponse(jwtToken, user.getRole());
     }
 
     public AuthenticationResponse registerAdmin(RegisterRequest request) throws RuntimeException{
@@ -65,7 +65,7 @@ public class UserService{
                     .build();   
         userRepository.save(user); 
         String jwtToken=jwtService.generateToken(user);
-        return new AuthenticationResponse(jwtToken);
+        return new AuthenticationResponse(jwtToken, user.getRole());
     }
     
     public AuthenticationResponse login(AuthenticationRequest request) throws RuntimeException {
@@ -75,7 +75,7 @@ public class UserService{
         if(user == null)
             throw new UserNotExistsException();
         String jwtToken=jwtService.generateToken(user);
-        return new AuthenticationResponse(jwtToken);
+        return new AuthenticationResponse(jwtToken,user.getRole());
     }
 
     public UserDTO modifyUser (String oldmail, ModifyUserRequest request) throws RuntimeException{

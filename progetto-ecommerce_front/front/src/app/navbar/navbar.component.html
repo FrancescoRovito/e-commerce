@@ -1,0 +1,23 @@
+<!--
+    nav: elemento di navigazione, utilizzato per contenere i link di navigazione del sito.
+    class="nav" è un'attributo di classe che può essere utilizzato per applicare stili CSS 
+    specifici a questo elemento.
+-->
+<nav class="nav">
+    <h1 class="title">e-comm</h1>
+     <!--
+        div è un contenitore generico che raggruppa gli elementi successivi
+    -->
+    <div class="nav_search">
+        <input type="text" placeholder="Ricerca e-comm">
+        <button>cerca</button>
+    </div>
+    <ul>
+        <!-- non ci va href perchè richiede una pagina -->
+        <li><a routerLink=""> home </a></li>
+        <!-- pagina di autenticazione degli admin -->
+        <li><a routerLink="seller-auth"> seller </a></li>
+        <li><a routerLink="login"> login </a></li>
+        <li><a routerLink="cart"> cart </a></li>
+    </ul>
+</nav>

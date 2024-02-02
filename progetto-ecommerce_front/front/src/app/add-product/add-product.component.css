@@ -1,0 +1,16 @@
+.errors{
+    text-align: center;
+    color: red;
+    margin-top: -15px;
+    margin-bottom: 10px;
+}
+
+.text{
+    text-align: center;
+    color: darkcyan;
+}
+
+.label{
+    margin: 100px;
+}
+
