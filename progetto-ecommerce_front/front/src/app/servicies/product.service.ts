@@ -8,10 +8,15 @@ import { Product } from '../dataTypes';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
-  isSellerLoggedIn=new BehaviorSubject<boolean>(false);
 
-  constructor(private apiService:ApiService, private router:Router) { }
+
+export class ProductService {
+  productList:Product[]=[]
+  constructor(private apiService:ApiService, private router:Router) { 
+    this.getAllProduct().subscribe((res)=>{
+      this.productList=res
+    })
+  }
 
   /*addProduct(data:object):void{
     let result=this.apiService.makeRequest("post",API.product+API.addProduct,data)

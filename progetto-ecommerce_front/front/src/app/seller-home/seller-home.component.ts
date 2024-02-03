@@ -10,14 +10,16 @@ import { Product } from '../dataTypes';
 })
 export class SellerHomeComponent implements OnInit{
 
-  productList:undefined | Product[]
-  constructor(private sellerService:SellerService, private productService:ProductService){}
+  //productList:undefined|Product[]; //versione precedente
+  constructor(private sellerService:SellerService, public productService:ProductService){}
 
   ngOnInit(): void {
+    /** versione precedente 
     this.productService.getAllProduct().subscribe((result)=>{
       if(result){
-        this.productList=result;
+        console.log(result)
+        this.productList=result 
       }
-    })
+    })*/
   }
 }

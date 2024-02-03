@@ -1,1 +1,15 @@
-<app-add-product></app-add-product>
+
+<div class="body">
+    <app-add-product></app-add-product>
+    <h1>Prodotti in Magazzino</h1>
+    <div class="productList">
+        <div class="product" *ngFor="let el of productService.productList">
+            <p> {{el.name}}</p>
+            <p> {{el.type}}</p>
+            <p> {{el.model}}</p>
+            <p> {{el.code}}</p>
+            <p> {{el.price}}</p>
+            <p> {{el.quantity}}</p>
+        </div>
+    </div>
+</div>

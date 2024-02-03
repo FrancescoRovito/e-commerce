@@ -35,7 +35,7 @@ public class ProductService {
         return url;
     }
     
-    public ProductDTO addProduct (ProductRequest request) throws RuntimeException{
+    public Product addProduct (ProductRequest request) throws RuntimeException{
         if(!Support.validProduct(request))
             throw new DataNotCorrectException();
         Product product= Product.builder()
@@ -47,8 +47,11 @@ public class ProductService {
         .quantity(request.getQuantity())
         .build();
         productRepository.save(product);
+        return product;
+        /* in questo modo quando aggiungo dinamicamente in grafica mi mostra solo i campi
+           del dto mentre dal db li prende tutti
         ProductDTO productDTO = DtosMapper.INSTANCE.productToProductDTO(product);
-        return productDTO;
+        return productDTO; */
     }
 
     public ProductDTO modifyProduct (ModifyProductRequest modifyProductRequest ) throws RuntimeException{

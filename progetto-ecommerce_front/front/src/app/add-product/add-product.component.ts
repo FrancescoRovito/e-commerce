@@ -68,6 +68,7 @@ export class AddProductComponent implements OnInit{
       console.log(res)
       alert("Prodotto inserito con successo")
       this.productForm.reset();
+      this.productService.productList.push(res);
     })
   }
 }
